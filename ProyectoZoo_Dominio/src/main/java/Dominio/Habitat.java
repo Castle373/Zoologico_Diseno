@@ -1,8 +1,10 @@
 package Dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
 
 /**
@@ -24,6 +26,8 @@ public class Habitat {
     private Clima clima;
     private Vegetacion vegetacion;
     private List<Continente> continentes;
+    @JsonIgnore // Para Jackson
+    @BsonIgnore // Para el controlador MongoDB Java
     private List<HabitatOcupada> habitatOcupada;
 
     public Habitat(String nombre, Clima clima, Vegetacion vegetacion) {
@@ -110,6 +114,11 @@ public class Habitat {
         }
         final Habitat other = (Habitat) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
     

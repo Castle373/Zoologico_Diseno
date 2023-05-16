@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author IVAN
+ * @author Diego
  */
 public abstract class DAOBase<T> {
 

@@ -129,6 +129,11 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
         jLabel1.setText("Registrar Habitat");
 
         cmbClimas.setEnabled(false);
+        cmbClimas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClimasActionPerformed(evt);
+            }
+        });
 
         cmbVegetacion.setEnabled(false);
 
@@ -361,6 +366,10 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
     reiniciarContinentes();
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cmbClimasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClimasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbClimasActionPerformed
     public void registrarHabitat(){
         Habitat h = new Habitat();
         h.setNombre(txtNombreHabitat.getText());

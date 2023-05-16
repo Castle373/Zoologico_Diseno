@@ -2,12 +2,15 @@ package Datos;
 
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Cuidador;
 
 import Dominio.Vegetacion;
+import Dominio.Zona;
+import java.util.Date;
 
 /**
  *
- * @author IVAN
+ * @author diego
  */
 public class NewMain {
 
@@ -49,6 +52,13 @@ public class NewMain {
 //        clima.guardar(clN);
 //        clima.guardar(clT);
 //        clima.guardar(clP);
+//        Zona zona= new Zona("diegoaño", 0);
+//        Cuidador cui = new Cuidador("Diego", "direccion", "6441271967", new Date());
+//        ZonaDAO z = new ZonaDAO();
+//        z.guardar(zona);
+//        CuidadorDAO C = new CuidadorDAO();
+//        C.guardar(cui);
+
     }
 
 }

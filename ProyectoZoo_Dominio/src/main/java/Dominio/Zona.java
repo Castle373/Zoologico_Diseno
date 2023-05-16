@@ -11,13 +11,18 @@ public class Zona {
     public Zona() {
     }
 
+    public Zona(String nombre, float extension) {
+        this.nombre = nombre;
+        this.extension = extension;
+    }
+
     /**
-     * 
+     *
      */
     private String nombre;
 
     /**
-     * 
+     *
      */
     private float extension;
 
@@ -37,6 +42,9 @@ public class Zona {
         this.extension = extension;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }
