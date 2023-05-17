@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\darks\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlHabitat.java
 C:\Users\darks\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlCuidadorEspecie.java
 C:\Users\darks\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlHabitatOcupada.java
@@ -12,3 +13,20 @@ C:\Users\darks\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\
 C:\Users\darks\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\FabricaLogica.java
 C:\Users\darks\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlVegetacion.java
 C:\Users\darks\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlContinentes.java
+=======
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlItinerario.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlCuidadorEspecie.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlEspecie.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlVegetacion.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlHabitatOcupada.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlCuidadores.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlHabitat.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlGuia.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ILogica.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlContinentes.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlZona.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\FachadaLogica.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\FabricaLogica.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ProyectoZoo_Logica.java
+C:\Users\kuose\OneDrive\Documentos\Zoologico_Diseno\ProyectoZoo_Logica\src\main\java\com\mycompany\proyectozoo_logica\ControlClima.java
+>>>>>>> 802706bfadeadd9459d6347e2ac0c62e5fc06d77
