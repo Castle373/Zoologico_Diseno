@@ -13,11 +13,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ProyectoZoo_GUI</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>ProyectoZoo_Datos</artifactId>
             <version>${project.version}</version>
         </dependency>
