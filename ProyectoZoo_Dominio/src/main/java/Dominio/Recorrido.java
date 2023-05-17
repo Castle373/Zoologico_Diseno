@@ -1,5 +1,9 @@
 package Dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * @author Diego Robles Rojas
  */
@@ -8,22 +12,33 @@ public class Recorrido {
     /**
      * Default constructor
      */
-    public Recorrido() {
-    }
+    
 
     /**
      * 
      */
     private Horario horario;
     private Guia guia;
-    private Itinerario itinerario;
-
-    public Recorrido(Horario horario, Guia guia, Itinerario itinerario) {
+    private List<Queja> quejas;
+    public Recorrido() {
+        this.quejas= new ArrayList<>();
+    }
+    public Recorrido(Horario horario, Guia guia) {
         this.horario = horario;
         this.guia = guia;
-        this.itinerario = itinerario;
+        this.quejas= new ArrayList<>();
     }
 
+    public List<Queja> getQuejas() {
+        return quejas;
+    }
+
+    public void setQuejas(List<Queja> quejas) {
+        this.quejas = quejas;
+    }
+    public void addQueja(Queja queja) {
+        this.quejas.add(queja);
+    }
     public Guia getGuia() {
         return guia;
     }
@@ -42,13 +57,37 @@ public class Recorrido {
         this.horario = horario;
     }
 
-    public Itinerario getItinerario() {
-        return itinerario;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.horario);
+        hash = 23 * hash + Objects.hashCode(this.guia);
+        return hash;
     }
 
-    public void setItinerario(Itinerario itinerario) {
-        this.itinerario = itinerario;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Recorrido other = (Recorrido) obj;
+        if (!Objects.equals(this.horario, other.horario)) {
+            return false;
+        }
+        return Objects.equals(this.guia, other.guia);
     }
+
+    @Override
+    public String toString() {
+        return horario.getDia().toString();
+    }
+ 
     
     
 }

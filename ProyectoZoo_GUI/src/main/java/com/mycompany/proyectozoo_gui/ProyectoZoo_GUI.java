@@ -11,7 +11,7 @@ package com.mycompany.proyectozoo_gui;
 public class ProyectoZoo_GUI {
 
     public static void main(String[] args) {
-        FrmPrincipal f = new FrmPrincipal();
+        frmPrincipalP f = new frmPrincipalP();
         f.setVisible(true);
     }
 }

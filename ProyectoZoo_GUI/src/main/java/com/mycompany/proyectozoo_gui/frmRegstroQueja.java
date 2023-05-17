@@ -4,20 +4,28 @@ import Dominio.Continente;
 import Dominio.Dias;
 import Dominio.Horario;
 import Dominio.Itinerario;
+import Dominio.Queja;
 import Dominio.Recorrido;
+import com.mycompany.proyectozoo_logica.FabricaLogica;
+import com.mycompany.proyectozoo_logica.ILogica;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author kuose
  */
 public class frmRegstroQueja extends javax.swing.JFrame {
-
+    ILogica logica;
     DefaultListModel<Itinerario> modeloListaItinerarios = new DefaultListModel<>();
     DefaultListModel<Recorrido> modeloListaRecorrido = new DefaultListModel<>();
     DefaultListModel<Horario> modeloListaHorario = new DefaultListModel<>();
+
     /**
      * Creates new form frmRegstroQueja
      */
@@ -26,10 +34,12 @@ public class frmRegstroQueja extends javax.swing.JFrame {
     }
 
     public frmRegstroQueja(List<Itinerario> itinerarios) {
+        logica = FabricaLogica.crearInstancia();
         initComponents();
         tablaItinerario.setModel(modeloListaItinerarios);
         tablaItinerarioFecha.setModel(modeloListaRecorrido);
         tablaItinerarioFechaHora.setModel(modeloListaHorario);
+        LlenarItinerarios(itinerarios);
     }
 
     public void LlenarItinerarios(List<Itinerario> itinerarios) {
@@ -38,24 +48,28 @@ public class frmRegstroQueja extends javax.swing.JFrame {
         }
     }
 
-     public void LlenarRecorridos(List<Recorrido> recorrido) {
-         
-         List<Dias>dias=new ArrayList<>();
-        for (int i = 0; i < recorrido.size(); i++) {           
-                if (!dias.contains(recorrido.get(i).getHorario().getDia())){
-                    modeloListaRecorrido.addElement(recorrido.get(i));
-                    dias.add(recorrido.get(i).getHorario().getDia());
-                }
-            
-           
-            
+    public void LlenarRecorridos(List<Recorrido> recorrido) {
+        modeloListaRecorrido.removeAllElements();
+        List<Dias> dias = new ArrayList<>();
+        for (int i = 0; i < recorrido.size(); i++) {
+            if (!dias.contains(recorrido.get(i).getHorario().getDia())) {
+                modeloListaRecorrido.addElement(recorrido.get(i));
+                dias.add(recorrido.get(i).getHorario().getDia());
+            }
+
         }
     }
-      public void LlenarHorarios(List<Horario> horarios) {
-        for (int i = 0; i < horarios.size(); i++) {
-            modeloListaHorario.addElement(horarios.get(i));
+
+    public void LlenarHorarios(List<Recorrido> recorrido, Dias dia) {
+        modeloListaHorario.removeAllElements();
+        for (int i = 0; i < recorrido.size(); i++) {
+            if (recorrido.get(i).getHorario().getDia().equals(dia)) {
+                modeloListaHorario.addElement(recorrido.get(i).getHorario());
+            }
+
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,14 +84,13 @@ public class frmRegstroQueja extends javax.swing.JFrame {
         tablaItinerario = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        nombreGuiaQueja = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtNombreGuia = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaItinerarioFechaHora = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -88,6 +101,8 @@ public class frmRegstroQueja extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         botonEnviarQueja = new javax.swing.JButton();
         botonRegresar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDescripcion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,35 +121,31 @@ public class frmRegstroQueja extends javax.swing.JFrame {
 
         jLabel3.setText("Correo:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtCorreoActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Telefono:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtTelefonoActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Escriba su queja");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Nombre (Opcional)");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
+
+        txtNombreGuia.setEditable(false);
 
         jScrollPane4.setViewportView(tablaItinerarioFechaHora);
 
@@ -167,166 +178,237 @@ public class frmRegstroQueja extends javax.swing.JFrame {
             }
         });
 
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setRows(5);
+        jScrollPane2.setViewportView(txtDescripcion);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(botonRegresar)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(botonEnviarQueja))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel9))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nombreGuiaQueja, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel11))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(34, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(380, 380, 380))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel2))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel8)
+                .addGap(89, 89, 89)
+                .addComponent(jLabel9)
+                .addGap(105, 105, 105)
+                .addComponent(jLabel11)
+                .addGap(115, 115, 115)
+                .addComponent(jLabel10))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtNombreGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel3))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel4))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel6))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel5))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(botonRegresar)
+                .addGap(349, 349, 349)
+                .addComponent(botonEnviarQueja))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(8, 8, 8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombreGuiaQueja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10))))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addComponent(jLabel3)
                 .addGap(0, 0, 0)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonEnviarQueja)
-                    .addComponent(botonRegresar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(botonEnviarQueja))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonRegresar))))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void botonEnviarQuejaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarQuejaActionPerformed
-        // TODO add your handling code here:
+        if (!validarTelefono()) {
+           return;
+        } 
+        if (!validarCorreo()) {
+           return;  
+        }
+        if (!validarCampos()) {
+            return;
+        }
+        guardarQueja();
     }//GEN-LAST:event_botonEnviarQuejaActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        // TODO add your handling code here:
+      frmPrincipalP f = new frmPrincipalP();
+        f.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void tablaItinerarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaItinerarioMouseClicked
-        if (evt.getClickCount() == 2) {
-            Itinerario selectedValue = tablaItinerario.getSelectedValue();
-            if (selectedValue != null) {
-                LlenarRecorridos(selectedValue.getRecorridos());
-                modeloListaHorario.removeAllElements();
-                
-                    
-                
-            }
+
+        Itinerario selectedValue = tablaItinerario.getSelectedValue();
+        if (selectedValue != null) {
+            LlenarRecorridos(selectedValue.getRecorridos());
+            modeloListaHorario.removeAllElements();
         }
+
 
     }//GEN-LAST:event_tablaItinerarioMouseClicked
 
     private void tablaItinerarioFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaItinerarioFechaMouseClicked
+
+        Itinerario selectedValue = tablaItinerario.getSelectedValue();
+        Recorrido selectedValue2 = tablaItinerarioFecha.getSelectedValue();
         
-        if (evt.getClickCount() == 2) {
-            Recorrido selectedValue = tablaItinerarioFecha.getSelectedValue();
-            if (selectedValue != null) {
-//                LlenarHorarios(selectedValue.getHorario());
-//                modeloListaHorario.removeAllElements();
-                
-                    
-                
+        if (selectedValue != null&&selectedValue2!=null) {
+            txtNombreGuia.setText(selectedValue2.getGuia().toString());
+            LlenarHorarios(selectedValue.getRecorridos(), selectedValue2.getHorario().getDia());
+//                modeloListaHorario.removeAllElements();  
+        }
+
+    }//GEN-LAST:event_tablaItinerarioFechaMouseClicked
+    public void guardarQueja() {
+        Itinerario itinerarioqueja = new Itinerario();
+        Recorrido recorridoQueja = new Recorrido();
+        Queja q = new Queja();
+        q.setCorreoElectronico(txtCorreo.getText());
+        q.setDescripcion(txtDescripcion.getText());
+        q.setFecha(new Date());
+        q.setTelefonoVisitante(txtTelefono.getText());
+        for (int i = 0; i < modeloListaItinerarios.size(); i++) {
+            Recorrido reco = tablaItinerarioFecha.getSelectedValue();
+            Horario hora = tablaItinerarioFechaHora.getSelectedValue();
+            if (modeloListaItinerarios.get(i).getRecorridos().contains(reco)) {
+                if (reco.getHorario().equals(hora)) {
+                    itinerarioqueja=modeloListaItinerarios.get(i);
+                    recorridoQueja=reco;          
+                }
             }
         }
-    }//GEN-LAST:event_tablaItinerarioFechaMouseClicked
+        if (!txtNombre.getText().isEmpty()) {
+           q.setNombreCompletoVisitante(txtNombre.getText());
+        }else{
+           q.setNombreCompletoVisitante("ANONYMUS");
+        }
+        for (int i = 0; i < itinerarioqueja.getRecorridos().size(); i++) {
+            if (itinerarioqueja.getRecorridos().get(i).equals(recorridoQueja)) {
+                System.out.println("Encontro 1");
+                System.out.println(itinerarioqueja.getRecorridos().get(i).getQuejas().size());
+                itinerarioqueja.getRecorridos().get(i).addQueja(q);
+                System.out.println(itinerarioqueja.getRecorridos().get(i).getQuejas().size());
+            }
+            
+        }
+
+        if (logica.actualizarItinerario(itinerarioqueja)) {
+            JOptionPane.showMessageDialog(this, "Registro de Queja Exitoso");
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo Agregar La queja");
+        }
+        
+    }
+    public boolean validarCampos(){
+        if (tablaItinerarioFechaHora.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se A selecionado una hora");
+            return false;  
+        }
+        if (txtDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escribe una Descripcio de tu queja");
+            return false;
+        }
+        return true;
+    }
+    public boolean validarTelefono() {
+        CharSequence cadena = txtTelefono.getText();
+        Pattern pattern = Pattern.compile("^\\((\\d{3})\\)-?(\\d{3})-?(\\d{4})$|^\\((\\d{3})\\)(\\d{7})$|^\\d{10}$");
+        Matcher matcher = pattern.matcher(cadena);
+        return matcher.matches();
+    }
+    public boolean validarCorreo(){
+        CharSequence cadena = txtCorreo.getText();
+        Pattern pattern = Pattern.compile("^([\\w.-]{1,20})@[a-zA-Z0-9.-]{1,20}$");
+        Matcher matcher = pattern.matcher(cadena);
+        return matcher.matches();
+    }
 
     /**
      * @param args the command line arguments
@@ -377,15 +459,16 @@ public class frmRegstroQueja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField nombreGuiaQueja;
     private javax.swing.JList<Itinerario> tablaItinerario;
     private javax.swing.JList<Recorrido> tablaItinerarioFecha;
     private javax.swing.JList<Horario> tablaItinerarioFechaHora;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreGuia;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -119,7 +119,6 @@ public class FachadaDatos implements IDatos
     }
 
     @Override
-<<<<<<< HEAD
     public Cuidador buscarCuidador(ObjectId id) {
         return cuidador.buscarPorID(id);
     }
@@ -127,14 +126,31 @@ public class FachadaDatos implements IDatos
     @Override
     public Habitat buscarHabitat(ObjectId id) {
        return habitat.buscarPorID(id);
-=======
+    }
+    @Override
     public List<Itinerario> recuperaItinerarios() {
         return itinerario.buscarTodos();
->>>>>>> 1cf358274c2019e1c6dcbfea91db79a0bfd978e2
     }
 
-    
-    
+    @Override
+    public List<Guia> recuperarGuias() {
+      return guia.buscarTodos();
+    }
+
+    @Override
+    public Itinerario verificarItinerario(String nombre) {
+       return this.itinerario.buscarPorNombre(nombre);
+    }
+
+    @Override
+    public boolean guardarItinerario(Itinerario iti) {
+        return this.itinerario.guardar(iti);
+    }
+
+    @Override
+    public boolean actualizarItinerario(Itinerario itinerario) {
+        return this.itinerario.actualizarItinerario(itinerario);
+    }
     
 
 }

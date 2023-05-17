@@ -540,8 +540,9 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       frmPrincipalP f = new frmPrincipalP();
+        f.setVisible(true);
         this.dispose();
-        logica.abrirMenu();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void guardarEspecie() {

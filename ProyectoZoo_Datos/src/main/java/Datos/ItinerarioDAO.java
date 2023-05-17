@@ -1,14 +1,14 @@
-
 package Datos;
-
 
 import Dominio.Itinerario;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
@@ -31,6 +31,22 @@ public class ItinerarioDAO<T> extends DAOBase<Itinerario> {
             return true; // El guardado fue exitoso
         } catch (MongoException e) {
             return false; // Error al guardar la entidad
+        }
+    }
+
+    public Itinerario buscarPorNombre(String nombre) {
+        Itinerario iti = obtenerColeccion().find(eq("nombre", nombre)).first();
+        return iti;
+    }
+
+    public boolean actualizarItinerario(Itinerario iti) {
+        MongoCollection<Itinerario> coleccion = obtenerColeccion();
+        try {
+            Bson filtro = eq("_id", iti.getId());
+            UpdateResult resultado = coleccion.replaceOne(filtro, iti);
+            return resultado.getModifiedCount() > 0; // Verificar si se realizó la actualización
+        } catch (MongoException e) {
+            return false; // Error al actualizar el itinerario
         }
     }
 

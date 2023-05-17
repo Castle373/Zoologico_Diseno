@@ -3,6 +3,7 @@ package Datos;
 import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Cuidador;
+import Dominio.Guia;
 
 import Dominio.Vegetacion;
 import Dominio.Zona;
@@ -53,11 +54,14 @@ public class NewMain {
 //        clima.guardar(clT);
 //        clima.guardar(clP);
 //        Zona zona= new Zona("diegoaño", 0);
-        Cuidador cui = new Cuidador("Diego", "direccion", "6441271967", new Date());
-//        ZonaDAO z = new ZonaDAO();
-//        z.guardar(zona);
-        CuidadorDAO C = new CuidadorDAO();
-        C.guardar(cui);
+//        Cuidador cui = new Cuidador("Diego", "direccion", "6441271967", new Date());
+////        ZonaDAO z = new ZonaDAO();
+////        z.guardar(zona);
+//        CuidadorDAO C = new CuidadorDAO();
+//        C.guardar(cui);
+           Guia g = new Guia("Gibran Duran Solano", "direccion", "6441271967", new Date());
+           GuiaDAO gs = new GuiaDAO();
+           gs.guardar(g);
 
     }
 

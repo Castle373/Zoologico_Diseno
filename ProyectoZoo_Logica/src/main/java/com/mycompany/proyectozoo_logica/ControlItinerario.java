@@ -15,7 +15,19 @@ public class ControlItinerario {
     public List<Itinerario> RecuperaItinerario(){
         datos=FabricaDatos.dameInstancia();
         
-        return datos.recuperaItinerarios();
-        
+        return datos.recuperaItinerarios();   
+    }
+     public Itinerario verificaItinerario(String nombre){
+        datos=FabricaDatos.dameInstancia();
+        Itinerario i =datos.verificarItinerario(nombre);
+        return i;
+    }
+     public boolean guardarItinerario(Itinerario iti){
+        datos=FabricaDatos.dameInstancia();
+        return datos.guardarItinerario(iti); 
+    }
+     public boolean actualizarItinerario(Itinerario iti){
+        datos=FabricaDatos.dameInstancia();
+        return datos.actualizarItinerario(iti); 
     }
 }

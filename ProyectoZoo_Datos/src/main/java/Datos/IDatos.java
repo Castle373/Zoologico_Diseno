@@ -23,14 +23,17 @@ public interface IDatos
     public List<Continente>recuperarContinente();
     
     public List<Vegetacion> recuperarVegetacion();
-    
+    public List<Guia> recuperarGuias();
     public Habitat verificarHabitat(String nombre);
     public Especie verificarEspecie(String nombre);
+    public Itinerario verificarItinerario(String nombre);
     public Cuidador buscarCuidador(ObjectId id);
     public Habitat buscarHabitat(ObjectId id);
     public boolean guardaHabitat(Habitat habitat);
     public boolean guardaEspecie(Especie especie);
     public boolean guardarGuia(Guia guia);
+    public boolean guardarItinerario(Itinerario itinerario);
+    public boolean actualizarItinerario(Itinerario itinerario);
     public boolean agregarHabitatOcupadaAHabitat(ObjectId id, HabitatOcupada habitat);
     public boolean agregarCuidadorEspecieACuidador(ObjectId id, CuidadorEspecie cuidadorEspecie);
     public boolean guardarHabitats(List<HabitatOcupada> habitatOcupada);
