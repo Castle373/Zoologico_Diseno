@@ -9,6 +9,7 @@ import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.HabitatOcupada;
+import Dominio.Itinerario;
 import Dominio.Vegetacion;
 import Dominio.Zona;
 import java.util.List;
@@ -26,6 +27,7 @@ public class FachadaDatos implements IDatos
     private EspecieDAO especie;
     private HabitatOcupaDAO habitatO;
     private CuidadoresEspecieDAO cuidadorEspecie;
+    private ItinerarioDAO itinerario;
     public FachadaDatos(){
         continente=new ContinenteDAO();
         vegetacion=new VegetacionDAO();
@@ -37,6 +39,7 @@ public class FachadaDatos implements IDatos
         especie= new EspecieDAO();
         habitatO= new HabitatOcupaDAO();
         cuidadorEspecie= new CuidadoresEspecieDAO();
+        itinerario = new ItinerarioDAO();
     }
     @Override
     public List<Clima> recuperarClima() {
@@ -116,6 +119,7 @@ public class FachadaDatos implements IDatos
     }
 
     @Override
+<<<<<<< HEAD
     public Cuidador buscarCuidador(ObjectId id) {
         return cuidador.buscarPorID(id);
     }
@@ -123,6 +127,10 @@ public class FachadaDatos implements IDatos
     @Override
     public Habitat buscarHabitat(ObjectId id) {
        return habitat.buscarPorID(id);
+=======
+    public List<Itinerario> recuperaItinerarios() {
+        return itinerario.buscarTodos();
+>>>>>>> 1cf358274c2019e1c6dcbfea91db79a0bfd978e2
     }
 
     

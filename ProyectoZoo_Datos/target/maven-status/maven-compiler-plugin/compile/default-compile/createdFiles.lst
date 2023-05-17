@@ -1,6 +1,7 @@
 Datos\HabitatOcupaDAO.class
 Datos\FachadaDatos.class
 Datos\EspecieDAO.class
+Datos\ItinerarioDAO.class
 Datos\ProyectoZoo_Datos.class
 Datos\NewMain.class
 Datos\ContinenteDAO.class

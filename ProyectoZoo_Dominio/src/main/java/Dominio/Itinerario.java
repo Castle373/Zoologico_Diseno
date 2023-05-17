@@ -46,6 +46,24 @@ public class Itinerario {
 
    
 
+    public List<Recorrido> getRecorridos() {
+        return recorridos;
+    }
+
+    public void setRecorridos(List<Recorrido> recorridos) {
+        this.recorridos = recorridos;
+    }
+
+    public List<Queja> getQuejas() {
+        return quejas;
+    }
+
+    public void setQuejas(List<Queja> quejas) {
+        this.quejas = quejas;
+    }
+
+    
+    
     public float getLongitud() {
         return Longitud;
     }

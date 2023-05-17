@@ -6,6 +6,7 @@ com\mycompany\proyectozoo_logica\ControlZona.class
 com\mycompany\proyectozoo_logica\ProyectoZoo_Logica.class
 com\mycompany\proyectozoo_logica\ILogica.class
 com\mycompany\proyectozoo_logica\ControlGuia.class
+com\mycompany\proyectozoo_logica\ControlItinerario.class
 com\mycompany\proyectozoo_logica\FachadaLogica.class
 com\mycompany\proyectozoo_logica\ControlContinentes.class
 com\mycompany\proyectozoo_logica\ControlCuidadores.class

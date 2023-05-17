@@ -8,11 +8,13 @@ import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.HabitatOcupada;
+import Dominio.Itinerario;
 import Dominio.Vegetacion;
 import Dominio.Zona;
-import com.mycompany.proyectozoo_gui.FrmPrincipal;
-import com.mycompany.proyectozoo_gui.frmRegistrarEspecie;
-import com.mycompany.proyectozoo_gui.frmRegistrarHabitat;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 802706bfadeadd9459d6347e2ac0c62e5fc06d77
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -29,6 +31,7 @@ public class FachadaLogica implements ILogica {
     private ControlEspecie controlEspecie;
     private ControlHabitatOcupada controlHabitatO;
     private ControlCuidadorEspecie controlCuidadorEspecie;
+    private ControlItinerario controlitinerario;
     public FachadaLogica() {
         this.controlHabitat = new ControlHabitat();
         this.controlHabitatO = new ControlHabitatOcupada();
@@ -40,6 +43,7 @@ public class FachadaLogica implements ILogica {
         this.controlZona= new ControlZona();
         this.controlEspecie= new ControlEspecie();
         this.controlCuidadorEspecie= new ControlCuidadorEspecie();
+        this.controlitinerario = new ControlItinerario();
     }
 
     @Override
@@ -62,8 +66,14 @@ public class FachadaLogica implements ILogica {
             if (listaclima.isEmpty()||listacon.isEmpty()||listavege.isEmpty()) {
             return false;
             }
-            frmRegistrarHabitat frm = new frmRegistrarHabitat(listacon, listaclima, listavege);
-            frm.setVisible(true);
+<<<<<<< HEAD
+            //frmRegistrarHabitat frm = new frmRegistrarHabitat(listacon, listaclima, listavege);
+            //frm.setVisible(true);
+=======
+            
+//            frmRegistrarHabitat frm = new frmRegistrarHabitat(listacon, listaclima, listavege);
+//            frm.setVisible(true);
+>>>>>>> 802706bfadeadd9459d6347e2ac0c62e5fc06d77
         
         return true;
     }
@@ -76,16 +86,21 @@ public class FachadaLogica implements ILogica {
             if (listacuidador.isEmpty()||listahabitat.isEmpty()||listaZona.isEmpty()) {
             return false;
             }
-            frmRegistrarEspecie frm = new frmRegistrarEspecie(listacuidador, listahabitat, listaZona);
-            frm.setVisible(true);
+<<<<<<< HEAD
+            //frmRegistrarEspecie frm = new frmRegistrarEspecie(listacuidador, listahabitat, listaZona);
+            //frm.setVisible(true);
+=======
+//            frmRegistrarEspecie frm = new frmRegistrarEspecie(listacuidador, listahabitat, listaZona);
+//            frm.setVisible(true);
+>>>>>>> 802706bfadeadd9459d6347e2ac0c62e5fc06d77
         
         return true;
     }
     
     @Override
     public void abrirMenu() {
-       FrmPrincipal frm = new FrmPrincipal();
-       frm.setVisible(true);
+//       FrmPrincipal frm = new FrmPrincipal();
+//       frm.setVisible(true);
             
     }
 
@@ -141,6 +156,7 @@ public class FachadaLogica implements ILogica {
     }
 
     @Override
+<<<<<<< HEAD
     public Cuidador buscarCuidador(ObjectId id) {
         return controlCuidadores.buscarCuidador(id);
     }
@@ -152,4 +168,10 @@ public class FachadaLogica implements ILogica {
 
    
 
+=======
+    public List<Itinerario> recuperaItinerarios() {
+        return controlitinerario.RecuperaItinerario();
+    }
+
+>>>>>>> 1cf358274c2019e1c6dcbfea91db79a0bfd978e2
 }

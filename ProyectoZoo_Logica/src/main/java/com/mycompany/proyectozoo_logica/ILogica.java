@@ -6,6 +6,7 @@ import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.HabitatOcupada;
+import Dominio.Itinerario;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -26,5 +27,5 @@ public interface ILogica
     public void abrirMenu();    
     public boolean guardarHabitatsOcupadas(List<HabitatOcupada> habitatOcupada);
     public boolean guardarCuidadoresEspecies(List<CuidadorEspecie> cuidadoresEspecies);
-    
+    public List<Itinerario> recuperaItinerarios();
 }

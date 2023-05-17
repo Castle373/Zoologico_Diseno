@@ -9,6 +9,7 @@ import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.HabitatOcupada;
+import Dominio.Itinerario;
 import Dominio.Vegetacion;
 import Dominio.Zona;
 import java.util.List;
@@ -38,4 +39,5 @@ public interface IDatos
     public List<Zona> recuperarZonas();
     public List<Cuidador> recuperarCuidadores();
     public List<Habitat> recuperarHabitats();
+    public List<Itinerario> recuperaItinerarios();
 }
