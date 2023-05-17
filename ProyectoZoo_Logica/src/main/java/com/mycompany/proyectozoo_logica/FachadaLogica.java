@@ -10,9 +10,6 @@ import Dominio.Habitat;
 import Dominio.HabitatOcupada;
 import Dominio.Vegetacion;
 import Dominio.Zona;
-import com.mycompany.proyectozoo_gui.FrmPrincipal;
-import com.mycompany.proyectozoo_gui.frmRegistrarEspecie;
-import com.mycompany.proyectozoo_gui.frmRegistrarHabitat;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -62,8 +59,8 @@ public class FachadaLogica implements ILogica {
             if (listaclima.isEmpty()||listacon.isEmpty()||listavege.isEmpty()) {
             return false;
             }
-            frmRegistrarHabitat frm = new frmRegistrarHabitat(listacon, listaclima, listavege);
-            frm.setVisible(true);
+            //frmRegistrarHabitat frm = new frmRegistrarHabitat(listacon, listaclima, listavege);
+            //frm.setVisible(true);
         
         return true;
     }
@@ -76,16 +73,16 @@ public class FachadaLogica implements ILogica {
             if (listacuidador.isEmpty()||listahabitat.isEmpty()||listaZona.isEmpty()) {
             return false;
             }
-            frmRegistrarEspecie frm = new frmRegistrarEspecie(listacuidador, listahabitat, listaZona);
-            frm.setVisible(true);
+            //frmRegistrarEspecie frm = new frmRegistrarEspecie(listacuidador, listahabitat, listaZona);
+            //frm.setVisible(true);
         
         return true;
     }
     
     @Override
     public void abrirMenu() {
-       FrmPrincipal frm = new FrmPrincipal();
-       frm.setVisible(true);
+//       FrmPrincipal frm = new FrmPrincipal();
+//       frm.setVisible(true);
             
     }
 
