@@ -1,6 +1,7 @@
 package Dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,10 +29,7 @@ public class Especie {
     // esta no estoy seguro
     
     private List<Especialidad> cuidadoresEspecializados;
-    private List<CuidadorEspecie> cuidadores;
-    
-    @JsonIgnore // Para Jackson
-    @BsonIgnore // Para el controlador MongoDB Java
+    private List<CuidadorEspecie> cuidadorEspecie;
     private List<HabitatOcupada> habitatsOcupadas;
     
     public Especie(String nombre, String nombreCientifico, String descripcion) {
@@ -40,7 +38,7 @@ public class Especie {
         this.descripcion = descripcion;
         animales = new ArrayList<>();
         cuidadoresEspecializados=new ArrayList<>();
-        cuidadores= new ArrayList<>();
+        cuidadorEspecie= new ArrayList<>();
         habitatsOcupadas =new ArrayList<>();
     }
 
@@ -48,12 +46,12 @@ public class Especie {
 
   
 
-    public List<CuidadorEspecie> getCuidadores() {
-        return cuidadores;
+    public List<CuidadorEspecie> getCuidadorEspecie() {
+        return cuidadorEspecie;
     }
 
-    public void setCuidadores(List<CuidadorEspecie> cuidadores) {
-        this.cuidadores = cuidadores;
+    public void setCuidadorEspecie(List<CuidadorEspecie> cuidadorEspecie) {
+        this.cuidadorEspecie = cuidadorEspecie;
     }
     
 

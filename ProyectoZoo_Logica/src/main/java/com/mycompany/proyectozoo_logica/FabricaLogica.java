@@ -3,7 +3,7 @@ package com.mycompany.proyectozoo_logica;
 
 /**
  *
- * @author IVAN
+ * @author diego
  * 
  */
 public class FabricaLogica {

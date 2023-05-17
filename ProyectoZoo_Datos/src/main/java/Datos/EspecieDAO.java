@@ -27,10 +27,10 @@ public class EspecieDAO<T> extends DAOBase<Especie> {
     }
 
     @Override
-    public boolean guardar(Especie entidad) {
+    public boolean guardar(Especie especie) {
         MongoCollection<Especie> coleccionP = obtenerColeccion();
         try {
-            coleccionP.insertOne(entidad);
+            coleccionP.insertOne(especie);
             return true; // El guardado fue exitoso
         } catch (MongoException e) {
             return false; // Error al guardar la entidad

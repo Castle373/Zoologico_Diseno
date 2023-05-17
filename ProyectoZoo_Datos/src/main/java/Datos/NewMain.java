@@ -53,11 +53,11 @@ public class NewMain {
 //        clima.guardar(clT);
 //        clima.guardar(clP);
 //        Zona zona= new Zona("diegoaño", 0);
-//        Cuidador cui = new Cuidador("Diego", "direccion", "6441271967", new Date());
+        Cuidador cui = new Cuidador("Diego", "direccion", "6441271967", new Date());
 //        ZonaDAO z = new ZonaDAO();
 //        z.guardar(zona);
-//        CuidadorDAO C = new CuidadorDAO();
-//        C.guardar(cui);
+        CuidadorDAO C = new CuidadorDAO();
+        C.guardar(cui);
 
     }
 

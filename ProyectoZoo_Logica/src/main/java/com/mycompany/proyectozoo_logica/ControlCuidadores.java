@@ -7,7 +7,9 @@ package com.mycompany.proyectozoo_logica;
 import Datos.FabricaDatos;
 import Datos.IDatos;
 import Dominio.Cuidador;
+import Dominio.CuidadorEspecie;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -19,4 +21,10 @@ public class ControlCuidadores {
          datos=FabricaDatos.dameInstancia();  
         return datos.recuperarCuidadores();
     }
+    public boolean agregarCuidadorEspecieACuidador(ObjectId id, CuidadorEspecie cuidadorEspecie){
+         datos=FabricaDatos.dameInstancia();  
+        return datos.agregarCuidadorEspecieACuidador(id, cuidadorEspecie);
+    }
+    
+    
 }

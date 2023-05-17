@@ -16,6 +16,8 @@ public class Habitat {
      * Default constructor
      */
     public Habitat() {
+        this.continentes = new ArrayList<>();
+        this.habitatOcupada =new ArrayList<>();
     }
 
     /**
@@ -26,8 +28,6 @@ public class Habitat {
     private Clima clima;
     private Vegetacion vegetacion;
     private List<Continente> continentes;
-    @JsonIgnore // Para Jackson
-    @BsonIgnore // Para el controlador MongoDB Java
     private List<HabitatOcupada> habitatOcupada;
 
     public Habitat(String nombre, Clima clima, Vegetacion vegetacion) {

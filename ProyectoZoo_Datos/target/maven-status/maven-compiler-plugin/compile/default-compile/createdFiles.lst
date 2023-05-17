@@ -1,3 +1,4 @@
+Datos\HabitatOcupaDAO.class
 Datos\FachadaDatos.class
 Datos\EspecieDAO.class
 Datos\ProyectoZoo_Datos.class
@@ -10,6 +11,7 @@ Datos\DAOBase.class
 Datos\ZonaDAO.class
 Datos\ClimaDAO.class
 Datos\CuidadorDAO.class
+Datos\CuidadoresEspecieDAO.class
 Datos\FabricaDatos.class
 Datos\HabitatDAO.class
 Datos\IDatos.class

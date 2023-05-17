@@ -3,9 +3,11 @@ package com.mycompany.proyectozoo_logica;
 import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Cuidador;
+import Dominio.CuidadorEspecie;
 import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
+import Dominio.HabitatOcupada;
 import Dominio.Vegetacion;
 import Dominio.Zona;
 import com.mycompany.proyectozoo_gui.FrmPrincipal;
@@ -13,6 +15,7 @@ import com.mycompany.proyectozoo_gui.frmRegistrarEspecie;
 import com.mycompany.proyectozoo_gui.frmRegistrarHabitat;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 public class FachadaLogica implements ILogica {
 
@@ -24,9 +27,11 @@ public class FachadaLogica implements ILogica {
     private ControlCuidadores controlCuidadores;
     private ControlZona controlZona;
     private ControlEspecie controlEspecie;
+    private ControlHabitatOcupada controlHabitatO;
+    private ControlCuidadorEspecie controlCuidadorEspecie;
     public FachadaLogica() {
         this.controlHabitat = new ControlHabitat();
-        
+        this.controlHabitatO = new ControlHabitatOcupada();
         this.controlClima = new ControlClima();
         this.controlContinentes = new ControlContinentes();
         this.controlVegetacion = new ControlVegetacion();
@@ -34,6 +39,7 @@ public class FachadaLogica implements ILogica {
         this.controlCuidadores = new ControlCuidadores();
         this.controlZona= new ControlZona();
         this.controlEspecie= new ControlEspecie();
+        this.controlCuidadorEspecie= new ControlCuidadorEspecie();
     }
 
     @Override
@@ -90,7 +96,43 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public boolean guardarEspecie(Especie especie) {
-      return controlEspecie.guardarEspecie(especie);
+        
+        if (!especie.getHabitatsOcupadas().isEmpty()) {
+            this.guardarHabitatsOcupadas(especie.getHabitatsOcupadas());
+            for (int i = 0; i < especie.getHabitatsOcupadas().size(); i++) {
+                this.agregarHabitatOcupadaAHabitat(especie.getHabitatsOcupadas().get(i).getHabitat(), especie.getHabitatsOcupadas().get(i));
+            }
+        }
+        if (!especie.getCuidadorEspecie().isEmpty()) {
+            this.guardarCuidadoresEspecies(especie.getCuidadorEspecie());
+            for (int i = 0; i < especie.getCuidadorEspecie().size(); i++) {
+                this.agregarCuidadorEspecieACuidador(especie.getCuidadorEspecie().get(i).getCuidador(), especie.getCuidadorEspecie().get(i));
+            }
+        }
+        if (!controlEspecie.guardarEspecie(especie)) {
+            return false;
+        }
+      return true;
+    }
+
+    @Override
+    public boolean guardarHabitatsOcupadas(List<HabitatOcupada> habitatOcupada) {
+        return controlHabitatO.guardarHabitat(habitatOcupada);
+    } 
+
+    @Override
+    public boolean guardarCuidadoresEspecies(List<CuidadorEspecie> cuidadores) {
+        return controlCuidadorEspecie.guardarCuidadoresEspecie(cuidadores);
+    }
+
+    @Override
+    public boolean agregarHabitatOcupadaAHabitat(ObjectId id, HabitatOcupada habitat) {
+       return controlHabitat.agregarHabitatOcupadaAHabitat(id, habitat);
+    }
+
+    @Override
+    public boolean agregarCuidadorEspecieACuidador(ObjectId id, CuidadorEspecie cuidadorEspecie) {
+      return controlCuidadores.agregarCuidadorEspecieACuidador(id, cuidadorEspecie);
     }
 
 }

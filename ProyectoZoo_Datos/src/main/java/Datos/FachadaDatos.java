@@ -4,12 +4,15 @@ package Datos;
 import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Cuidador;
+import Dominio.CuidadorEspecie;
 import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
+import Dominio.HabitatOcupada;
 import Dominio.Vegetacion;
 import Dominio.Zona;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 public class FachadaDatos implements IDatos
 {
@@ -21,6 +24,8 @@ public class FachadaDatos implements IDatos
     private ZonaDAO zona;
     private CuidadorDAO cuidador;
     private EspecieDAO especie;
+    private HabitatOcupaDAO habitatO;
+    private CuidadoresEspecieDAO cuidadorEspecie;
     public FachadaDatos(){
         continente=new ContinenteDAO();
         vegetacion=new VegetacionDAO();
@@ -30,6 +35,8 @@ public class FachadaDatos implements IDatos
         zona = new ZonaDAO();
         cuidador = new CuidadorDAO();
         especie= new EspecieDAO();
+        habitatO= new HabitatOcupaDAO();
+        cuidadorEspecie= new CuidadoresEspecieDAO();
     }
     @Override
     public List<Clima> recuperarClima() {
@@ -82,6 +89,26 @@ public class FachadaDatos implements IDatos
     @Override
     public boolean guardaEspecie(Especie especie) {
       return this.especie.guardar(especie);
+    }
+
+    @Override
+    public boolean guardarHabitats(List<HabitatOcupada> habitatOcupada) {
+      return this.habitatO.guardarMuchos(habitatOcupada);
+    }
+
+    @Override
+    public boolean guardarCuidadoresEspecie(List<CuidadorEspecie> cuidadoresEspecie) {
+        return this.cuidadorEspecie.guardarMuchos(cuidadoresEspecie);
+    }
+
+    @Override
+    public boolean agregarHabitatOcupadaAHabitat(ObjectId id, HabitatOcupada habitatO) {
+     return this.habitat.agregarHabitatOcupada(id, habitatO);
+    }
+
+    @Override
+    public boolean agregarCuidadorEspecieACuidador(ObjectId id, CuidadorEspecie cuidadorEspecie) {
+        return this.cuidador.agregarCuidadorEspecie(id, cuidadorEspecie);
     }
     
     

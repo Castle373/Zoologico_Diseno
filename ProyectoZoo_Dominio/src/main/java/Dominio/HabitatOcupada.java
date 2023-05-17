@@ -15,7 +15,9 @@ public class HabitatOcupada {
     private ObjectId id;
     private ObjectId habitat;
     private ObjectId especie;
-
+    public HabitatOcupada(){
+        
+    }
     public HabitatOcupada(ObjectId habitat, ObjectId especie) {
         this.habitat = habitat;
         this.especie = especie;

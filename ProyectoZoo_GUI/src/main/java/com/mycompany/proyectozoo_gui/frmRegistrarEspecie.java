@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectozoo_gui;
 
+import Dominio.Animal;
 import Dominio.Continente;
 import Dominio.Cuidador;
 import Dominio.CuidadorEspecie;
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -30,12 +32,14 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
     DefaultListModel<Cuidador> modeloListaCuidadorSeleccionados = new DefaultListModel<>();
     DefaultListModel<Habitat> modeloListaHabitatDisponibles = new DefaultListModel<>();
     DefaultListModel<Habitat> modeloListaHabitatSeleccionados = new DefaultListModel<>();
+    List<Animal> animalesAcutales;
 
     /**
      * Creates new form frmRegistrarEspecie
      */
     public frmRegistrarEspecie() {
         initComponents();
+        
         listaDisponiblesCuidadores.setModel(modeloListaCuidadorDisponibles);
         listaSeleccionadosHabitats.setModel(modeloListaHabitatSeleccionados);
         listaDisponiblesHabitats.setModel(modeloListaHabitatDisponibles);
@@ -45,6 +49,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
     public frmRegistrarEspecie(List<Cuidador> listcui, List<Habitat> listhabi, List<Zona> listz) {
         initComponents();
         logica =FabricaLogica.crearInstancia();
+        animalesAcutales= new ArrayList();
         listaDisponiblesCuidadores.setModel(modeloListaCuidadorDisponibles);
         listaSeleccionadosHabitats.setModel(modeloListaHabitatSeleccionados);
         listaDisponiblesHabitats.setModel(modeloListaHabitatDisponibles);
@@ -100,6 +105,8 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         cmbZona = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        txtAnimales = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,6 +198,21 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Registrar Animales");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        txtAnimales.setEditable(false);
+        txtAnimales.setText("0");
+        txtAnimales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnimalesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -251,9 +273,13 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(224, 224, 224)
+                .addGap(95, 95, 95)
                 .addComponent(btnGuardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(112, 112, 112)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,9 +318,13 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
-                .addGap(25, 25, 25))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGuardar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(txtAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -362,6 +392,18 @@ if (evt.getClickCount() == 2) {
         }   
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void txtAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnimalesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnimalesActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+        fmRegistroAnimales f = new fmRegistroAnimales(this, true, animalesAcutales);
+        f.setVisible(true);
+        txtAnimales.setText(String.valueOf(animalesAcutales.size()));
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public void guardarEspecie(){
         Especie especie = new Especie();
         especie.setDescripcion(txtDescripcion.getText());
@@ -369,19 +411,26 @@ if (evt.getClickCount() == 2) {
         especie.setNombreCientifico(txtNombreCientifico.getText());
         List<HabitatOcupada> habitats = new ArrayList<>();
         List<CuidadorEspecie> cuidadorEspecie = new ArrayList<>();
+        especie.setId(new ObjectId());
         
-//        for (int i = 0; i < modeloListaHabitatSeleccionados.size(); i++) {
-//            HabitatOcupada h = new HabitatOcupada(modeloListaHabitatSeleccionados.get(i), especie);
-//            habitats.add(h);       
-//        }
-//        for (int i = 0; i < modeloListaCuidadorSeleccionados.size(); i++) {
-//            CuidadorEspecie c = new CuidadorEspecie(new Date(), modeloListaCuidadorSeleccionados.get(i), especie);
-//            cuidadorEspecie.add(c);       
-//        }
+        for (int i = 0; i < modeloListaHabitatSeleccionados.size(); i++) {
+            HabitatOcupada h = new HabitatOcupada(modeloListaHabitatSeleccionados.get(i).getId(), especie.getId());
+            habitats.add(h);       
+        }
+        for (int i = 0; i < modeloListaCuidadorSeleccionados.size(); i++) {
+            CuidadorEspecie c = new CuidadorEspecie(new Date(), modeloListaCuidadorSeleccionados.get(i).getId(), especie.getId());
+            cuidadorEspecie.add(c);       
+        }
         
         especie.setHabitatsOcupadas(habitats);
-       // especie.setCuidadores(cuidadorEspecie);
-        this.logica.guardarEspecie(especie);
+        especie.setCuidadorEspecie(cuidadorEspecie);
+        if (this.logica.guardarEspecie(especie)) {
+            JOptionPane.showMessageDialog(this, "Registro Exitoso");
+            this.dispose();
+            logica.abrirMenu();
+        }else{
+            JOptionPane.showMessageDialog(this, "Error al Registrar");
+        }
     }
     public boolean validadCampos(){
         if (txtNombre.getText().isEmpty()) {
@@ -445,6 +494,7 @@ if (evt.getClickCount() == 2) {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<Zona> cmbZona;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -466,6 +516,7 @@ if (evt.getClickCount() == 2) {
     private javax.swing.JList<Habitat> listaDisponiblesHabitats;
     private javax.swing.JList<Cuidador> listaSeleccionadosCuidadores;
     private javax.swing.JList<Habitat> listaSeleccionadosHabitats;
+    private javax.swing.JTextField txtAnimales;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreCientifico;

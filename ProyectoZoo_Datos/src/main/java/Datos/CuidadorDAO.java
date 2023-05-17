@@ -5,10 +5,16 @@
 package Datos;
 
 import Dominio.Cuidador;
+import Dominio.CuidadorEspecie;
+import Dominio.Habitat;
+import Dominio.HabitatOcupada;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -35,7 +41,16 @@ public class CuidadorDAO<T> extends DAOBase<Cuidador> {
             return false; // Error al guardar la entidad
         }
     }
-
+    public boolean agregarCuidadorEspecie(ObjectId id, CuidadorEspecie cuidadorEspecie) {
+        try {
+            System.out.println(id);
+            MongoCollection<Cuidador> coleccionP = obtenerColeccion();
+            UpdateResult resultado = coleccionP.updateOne(Filters.eq("_id", id), Updates.addToSet("cuidadorEspecie", cuidadorEspecie));
+            return resultado.getModifiedCount() > 0;
+        } catch (MongoException | IllegalArgumentException e) {
+            return false;
+        }
+    }
     @Override
     public Cuidador buscarPorID(ObjectId id) {
         Cuidador cuidador = obtenerColeccion().find(eq("_id", id)).first();

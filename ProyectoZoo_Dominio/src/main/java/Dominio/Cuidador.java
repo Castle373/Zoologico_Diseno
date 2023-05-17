@@ -13,37 +13,37 @@ public class Cuidador extends Empleado {
     /**
      * Default constructor
      */
-    private List<Especialidad> especiesExpecialidadas;
-    private List<CuidadorEspecie> especiesCuidadas;
+    private List<Especialidad> especialidad;
+    private List<CuidadorEspecie> cuidadorEspecie;
     
     public Cuidador() {
     }
     public Cuidador(ObjectId id, String nombre, String direccion, String telefono, Date fechaIngreso) {
               
         super(id, nombre, direccion, telefono, fechaIngreso);
-        especiesExpecialidadas=new ArrayList<>();      
-        especiesCuidadas= new ArrayList<>();  
+        especialidad=new ArrayList<>();      
+        cuidadorEspecie= new ArrayList<>();  
     }
 
     public Cuidador(String nombre, String direccion, String telefono, Date fechaIngreso) {
         super(nombre, direccion, telefono, fechaIngreso);
-        especiesExpecialidadas=new ArrayList<>();      
-        especiesCuidadas= new ArrayList<>(); 
+        especialidad=new ArrayList<>();      
+        cuidadorEspecie= new ArrayList<>(); 
     }
-    public List<Especialidad> getEspeciesExpecialidadas() {
-        return especiesExpecialidadas;
-    }
-
-    public void setEspeciesExpecialidadas(List<Especialidad> especiesExpecialidadas) {
-        this.especiesExpecialidadas = especiesExpecialidadas;
+    public List<Especialidad> getEspecialidad() {
+        return especialidad;
     }
 
-    public List<CuidadorEspecie> getEspeciesCuidadas() {
-        return especiesCuidadas;
+    public void setEspecialidad(List<Especialidad> especialidad) {
+        this.especialidad = especialidad;
     }
 
-    public void setEspeciesCuidadas(List<CuidadorEspecie> especiesCuidadas) {
-        this.especiesCuidadas = especiesCuidadas;
+    public List<CuidadorEspecie> getCuidadorEspecie() {
+        return cuidadorEspecie;
+    }
+
+    public void setCuidadorEspecie(List<CuidadorEspecie> cuidadorEspecie) {
+        this.cuidadorEspecie = cuidadorEspecie;
     }
 
     

@@ -15,10 +15,10 @@ public class CuidadorEspecie {
     }
     private ObjectId id;
     private Date fechaInicioCuidado;
-    private Cuidador cuidador;
-    private Especie especie;
+    private ObjectId cuidador;
+    private ObjectId especie;
 
-    public CuidadorEspecie(Date fechaInicioCuidado, Cuidador cuidadorId, Especie especieId) {
+    public CuidadorEspecie(Date fechaInicioCuidado, ObjectId cuidadorId, ObjectId especieId) {
         this.fechaInicioCuidado = fechaInicioCuidado;
         this.cuidador = cuidadorId;
         this.especie = especieId;
@@ -34,24 +34,21 @@ public class CuidadorEspecie {
         this.id = id;
     }
 
-    public Cuidador getCuidador() {
+    public ObjectId getCuidador() {
         return cuidador;
     }
 
-    public void setCuidador(Cuidador cuidador) {
+    public void setCuidador(ObjectId cuidador) {
         this.cuidador = cuidador;
     }
 
-    public Especie getEspecie() {
+    public ObjectId getEspecie() {
         return especie;
     }
 
-    public void setEspecie(Especie especie) {
+    public void setEspecie(ObjectId especie) {
         this.especie = especie;
     }
-
-   
-
     public Date getFechaInicioCuidado() {
         return fechaInicioCuidado;
     }

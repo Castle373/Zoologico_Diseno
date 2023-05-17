@@ -18,6 +18,7 @@ import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -380,6 +381,7 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
         h.setContinentes(seleccionados);
         h.setClima((Clima) cmbClimas.getSelectedItem());
         h.setVegetacion((Vegetacion) cmbVegetacion.getSelectedItem());
+        
         
         if (logica.guardarHabitat(h)) {
             JOptionPane.showMessageDialog(this, "Registro Exitoso");

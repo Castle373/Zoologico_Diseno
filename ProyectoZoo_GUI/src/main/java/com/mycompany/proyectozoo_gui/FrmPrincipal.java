@@ -78,15 +78,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!logica.recuperaDatosHabitat()) {
             JOptionPane.showMessageDialog(this, "No se pudo recuperar los datos Correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+             this.dispose();
         }
-        this.dispose();
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if (!logica.recuperaDatosEspecies()) {
+         if (!logica.recuperaDatosEspecies()) {
             JOptionPane.showMessageDialog(this, "No se pudo recuperar los datos Correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+        }else{
+             this.dispose(); 
+         }
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
