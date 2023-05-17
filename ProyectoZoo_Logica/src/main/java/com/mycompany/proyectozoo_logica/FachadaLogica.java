@@ -1,5 +1,7 @@
 package com.mycompany.proyectozoo_logica;
 
+import Datos.FabricaDatos;
+import Datos.IDatos;
 import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Cuidador;
@@ -197,6 +199,12 @@ public class FachadaLogica implements ILogica {
     @Override
     public boolean actualizarItinerario(Itinerario itinerario) {
         return controlitinerario.actualizarItinerario(itinerario);
+    }
+
+    @Override
+    public void RegistrarDatos() {
+        IDatos datos = FabricaDatos.dameInstancia();
+        datos.RegistrarDatos();
     }
 
 }

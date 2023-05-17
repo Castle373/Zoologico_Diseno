@@ -33,4 +33,5 @@ public interface ILogica
     public List<Itinerario> recuperaItinerarios();
     public List<Guia> recuperaGuias();
     public Object[] recuperarDatosItineario();
+    public void RegistrarDatos();
 }

@@ -43,4 +43,5 @@ public interface IDatos
     public List<Cuidador> recuperarCuidadores();
     public List<Habitat> recuperarHabitats();
     public List<Itinerario> recuperaItinerarios();
+    public void RegistrarDatos();
 }

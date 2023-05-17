@@ -59,9 +59,9 @@ public class NewMain {
 ////        z.guardar(zona);
 //        CuidadorDAO C = new CuidadorDAO();
 //        C.guardar(cui);
-           Guia g = new Guia("Gibran Duran Solano", "direccion", "6441271967", new Date());
-           GuiaDAO gs = new GuiaDAO();
-           gs.guardar(g);
+      //     Guia g = new Guia("Gibran Duran Solano", "direccion", "6441271967", new Date());
+      //     GuiaDAO gs = new GuiaDAO();
+      //     gs.guardar(g);
 
     }
 
