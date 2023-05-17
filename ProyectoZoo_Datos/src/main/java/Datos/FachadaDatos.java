@@ -115,6 +115,16 @@ public class FachadaDatos implements IDatos
         return this.cuidador.agregarCuidadorEspecie(id, cuidadorEspecie);
     }
 
+    @Override
+    public Cuidador buscarCuidador(ObjectId id) {
+        return cuidador.buscarPorID(id);
+    }
+
+    @Override
+    public Habitat buscarHabitat(ObjectId id) {
+       return habitat.buscarPorID(id);
+    }
+
     
     
     

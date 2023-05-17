@@ -25,12 +25,18 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
     JButton btnEliminar = new JButton("Eliminar");
     public List<Animal> animales;
 
-    public fmRegistroAnimales(java.awt.Frame parent, boolean modal, List<Animal> listaAnimales) {
+    public fmRegistroAnimales(java.awt.Frame parent, boolean modal, List<Animal> listaAnimales,boolean Mostrar) {
         super(parent, modal);
+        
         initComponents();
+        if (Mostrar) {
+            btnEliminar.setEnabled(false);
+            btnAgregar.setEnabled(false);
+        }
         animales = listaAnimales;
         llenarTabla();
         tblAnimal.setDefaultRenderer(Object.class, new RenderTabla());
+        
     }
 
     /**
@@ -52,7 +58,7 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
         chkHembra = new javax.swing.JCheckBox();
         chkMacho = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,10 +117,10 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
 
         jLabel2.setText("Edad");
 
-        jButton2.setText("Agregar Animal");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Agregar Animal");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
@@ -147,7 +153,7 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -170,7 +176,7 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(jButton2))
+                        .addComponent(btnAgregar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -196,11 +202,11 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEdadActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (validar()) {
             agregarAnimal();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void chkMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMachoActionPerformed
         // TODO add your handling code here:
@@ -306,11 +312,11 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chkHembra;
     private javax.swing.JCheckBox chkMacho;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

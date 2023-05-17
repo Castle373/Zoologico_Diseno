@@ -25,6 +25,10 @@ public class ControlCuidadores {
          datos=FabricaDatos.dameInstancia();  
         return datos.agregarCuidadorEspecieACuidador(id, cuidadorEspecie);
     }
+    public Cuidador buscarCuidador(ObjectId id){
+        datos=FabricaDatos.dameInstancia();
+       return datos.buscarCuidador(id);
+    }
     
     
 }

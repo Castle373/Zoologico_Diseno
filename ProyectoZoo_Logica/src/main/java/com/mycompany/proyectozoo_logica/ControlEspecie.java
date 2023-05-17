@@ -17,19 +17,22 @@ import java.util.List;
 public class ControlEspecie {
     private IDatos datos;
     public Especie verificaEspecie(String nombre){
-//        datos=FabricaDatos.dameInstancia();
-//        Especie h =datos.verificarHabitat(nombre);
-//        return h;
-            return null;
+        datos=FabricaDatos.dameInstancia();
+        Especie e =datos.verificarEspecie(nombre);
+        return e;
     }
     
     public boolean guardarEspecie(Especie especie){
         datos=FabricaDatos.dameInstancia();
          return  datos.guardaEspecie(especie);
     }
+    public boolean actualizaEspecie(Especie especie){
+        datos=FabricaDatos.dameInstancia();
+         return  datos.guardaEspecie(especie);
+    }
     public List<Especie> recuperarEspecies(){
-//         datos=FabricaDatos.dameInstancia();  
-//        return datos.recuperarHabitats();
+//       datos=FabricaDatos.dameInstancia();  
+//       return datos.r();
     return null;
     }
 }

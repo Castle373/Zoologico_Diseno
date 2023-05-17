@@ -16,6 +16,7 @@ public class Itinerario {
     }
 
     private ObjectId id;
+    private String Itinerario;
     private int totalEspecies;
     private int maxVisitantes;
     private float Longitud;
@@ -24,15 +25,26 @@ public class Itinerario {
     private List<Recorrido> recorridos;
     private List<Queja> quejas;
 
-    public Itinerario(int totalEspecies, int maxVisitantes, float Longitud, int numeroEspecies) {
+    public Itinerario(String Itinerario, int totalEspecies, int maxVisitantes, float Longitud, int numeroEspecies) {
+        this.Itinerario = Itinerario;
         this.totalEspecies = totalEspecies;
         this.maxVisitantes = maxVisitantes;
         this.Longitud = Longitud;
         this.numeroEspecies = numeroEspecies;
-        this.zonasParques=new ArrayList<>();
-        this.recorridos=new ArrayList<>();
-        this.quejas=new ArrayList<>();
+        zonasParques= new ArrayList<>();
+        recorridos = new ArrayList<>();
+        quejas = new ArrayList<>();
     }
+    
+    public String getItinerario() {
+        return Itinerario;
+    }
+
+    public void setItinerario(String Itinerario) {
+        this.Itinerario = Itinerario;
+    }
+
+   
 
     public float getLongitud() {
         return Longitud;

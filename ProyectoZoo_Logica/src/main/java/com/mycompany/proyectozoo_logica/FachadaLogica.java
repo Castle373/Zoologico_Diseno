@@ -140,4 +140,16 @@ public class FachadaLogica implements ILogica {
         return controlEspecie.verificaEspecie(nombre);
     }
 
+    @Override
+    public Cuidador buscarCuidador(ObjectId id) {
+        return controlCuidadores.buscarCuidador(id);
+    }
+
+    @Override
+    public Habitat buscarHabitat(ObjectId id) {
+       return controlHabitat.buscarHabitats(id);
+    }
+
+   
+
 }

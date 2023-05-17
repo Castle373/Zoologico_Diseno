@@ -4,6 +4,7 @@ package com.mycompany.proyectozoo_logica;
 
 import Datos.FabricaDatos;
 import Datos.IDatos;
+import Dominio.Cuidador;
 import Dominio.Habitat;
 import Dominio.HabitatOcupada;
 import java.util.List;
@@ -29,6 +30,10 @@ public class ControlHabitat  {
     public List<Habitat> recuperarHabitats(){
          datos=FabricaDatos.dameInstancia();  
         return datos.recuperarHabitats();
+    }
+    public Habitat buscarHabitats(ObjectId id){
+        datos=FabricaDatos.dameInstancia();
+       return datos.buscarHabitat(id);
     }
     
 }

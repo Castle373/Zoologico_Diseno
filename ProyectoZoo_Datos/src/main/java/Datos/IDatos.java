@@ -25,6 +25,8 @@ public interface IDatos
     
     public Habitat verificarHabitat(String nombre);
     public Especie verificarEspecie(String nombre);
+    public Cuidador buscarCuidador(ObjectId id);
+    public Habitat buscarHabitat(ObjectId id);
     public boolean guardaHabitat(Habitat habitat);
     public boolean guardaEspecie(Especie especie);
     public boolean guardarGuia(Guia guia);
