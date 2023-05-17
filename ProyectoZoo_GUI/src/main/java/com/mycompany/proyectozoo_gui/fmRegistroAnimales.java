@@ -5,7 +5,12 @@
 package com.mycompany.proyectozoo_gui;
 
 import Dominio.Animal;
+import Utilidades.RenderTabla;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,15 +18,19 @@ import java.util.List;
  */
 public class fmRegistroAnimales extends javax.swing.JDialog {
 
+    private int row, columna;
     /**
      * Creates new form fmRegistroAnimales
      */
+    JButton btnEliminar = new JButton("Eliminar");
     public List<Animal> animales;
-    public fmRegistroAnimales(java.awt.Frame parent, boolean modal,List<Animal> listaAnimales) {
-        
+
+    public fmRegistroAnimales(java.awt.Frame parent, boolean modal, List<Animal> listaAnimales) {
         super(parent, modal);
         initComponents();
-        animales=listaAnimales;
+        animales = listaAnimales;
+        llenarTabla();
+        tblAnimal.setDefaultRenderer(Object.class, new RenderTabla());
     }
 
     /**
@@ -36,12 +45,12 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        tblAnimal = new javax.swing.JTable();
+        txtNombre = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        chkHembra = new javax.swing.JCheckBox();
+        chkMacho = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
@@ -54,39 +63,60 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAnimal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Edad", "Sexo"
+                "Nombre", "Edad", "Sexo", "Eliminar"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblAnimal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAnimalMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblAnimal);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtEdadActionPerformed(evt);
+            }
+        });
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadKeyTyped(evt);
             }
         });
 
         jLabel1.setText("Nombre");
 
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setText("Hembra");
+        buttonGroup1.add(chkHembra);
+        chkHembra.setText("Hembra");
 
-        buttonGroup1.add(jCheckBox2);
-        jCheckBox2.setText("Sexo");
+        buttonGroup1.add(chkMacho);
+        chkMacho.setSelected(true);
+        chkMacho.setText("Macho");
+        chkMacho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkMachoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Edad");
 
         jButton2.setText("Agregar Animal");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,30 +126,30 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(150, 150, 150))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
+                            .addComponent(txtNombre)
+                            .addComponent(txtEdad)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(67, 67, 67)
                                         .addComponent(jLabel1))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox1)
+                                        .addComponent(chkHembra)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox2))
-                                    .addComponent(jTextField3))
-                                .addGap(0, 36, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(chkMacho))
+                                    .addComponent(jLabel2))
+                                .addGap(0, 51, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,44 +157,118 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox2))
+                            .addComponent(chkHembra)
+                            .addComponent(chkMacho))
                         .addGap(13, 13, 13)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Animal a = new Animal("Trista", true, 1);
-        animales.add(a);
+
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtEdadActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (validar()) {
+            agregarAnimal();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void chkMachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMachoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkMachoActionPerformed
+
+    private void tblAnimalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAnimalMouseClicked
+        columna = tblAnimal.getColumnModel().getColumnIndexAtX(evt.getX());
+        row = evt.getY() / tblAnimal.getRowHeight();
+        if (columna <= tblAnimal.getColumnCount() && columna >= 0 && row <= tblAnimal.getRowCount() && row >= 0) {
+            Object objeto = tblAnimal.getValueAt(row, columna);
+            if (objeto instanceof JButton) {
+                ((JButton) objeto).doClick();
+                JButton botones = (JButton) objeto;
+                if (botones.equals(btnEliminar)) {
+                    animales.remove(row);
+                    llenarTabla();
+                }
+            }
+        }
+    }//GEN-LAST:event_tblAnimalMouseClicked
+
+    private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Cancela la entrada de caracteres no numéricos
+        }
+    }//GEN-LAST:event_txtEdadKeyTyped
+    public void agregarAnimal() {
+        Animal a = new Animal();
+        a.setEdad(Integer.parseInt(txtEdad.getText()));
+        a.setNombre(txtNombre.getText());
+        if (chkHembra.isSelected()) {
+            a.setSexo("Hembra");
+        } else {
+            a.setSexo("Macho");
+        }
+        animales.add(a);
+        txtEdad.setText("");
+        txtNombre.setText("");
+        llenarTabla();
+    }
+
+    public void llenarTabla() {
+
+        DefaultTableModel defa = (DefaultTableModel) tblAnimal.getModel();
+        defa.setRowCount(0);
+        for (Animal animal : animales) {
+            Object[] datos = new Object[defa.getColumnCount()];
+            datos[0] = animal.getNombre();
+            datos[1] = animal.getEdad();
+            datos[2] = animal.getSexo();
+            datos[3] = btnEliminar;
+            defa.addRow(datos);
+        }
+
+    }
+
+    public boolean validar() {
+        if (txtNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre");
+            return false;
+        }
+        if (txtEdad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Una Edad");
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -203,15 +307,15 @@ public class fmRegistroAnimales extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chkHembra;
+    private javax.swing.JCheckBox chkMacho;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tblAnimal;
+    private javax.swing.JTextField txtEdad;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

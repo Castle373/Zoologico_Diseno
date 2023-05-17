@@ -14,7 +14,7 @@ public interface ILogica
     public boolean recuperaDatosHabitat();
     public boolean recuperaDatosEspecies();
     public Habitat verificaNombreHabitat(String nombre);
-    
+    public Especie verificaNombreEspecie(String nombre);
     public boolean guardarHabitat(Habitat habitat);      
     public boolean guardarGuia(Guia guia); 
     public boolean guardarEspecie(Especie especie);

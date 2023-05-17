@@ -60,7 +60,11 @@ public class FachadaDatos implements IDatos
     return h;
         
     }
-
+    @Override
+    public Especie verificarEspecie(String nombre) {
+        return this.especie.buscarPorNombre(nombre);
+    }
+    
     @Override
     public boolean guardaHabitat(Habitat habitat) {
        return this.habitat.guardar(habitat);
@@ -110,6 +114,8 @@ public class FachadaDatos implements IDatos
     public boolean agregarCuidadorEspecieACuidador(ObjectId id, CuidadorEspecie cuidadorEspecie) {
         return this.cuidador.agregarCuidadorEspecie(id, cuidadorEspecie);
     }
+
+    
     
     
 

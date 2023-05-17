@@ -36,7 +36,10 @@ public class EspecieDAO<T> extends DAOBase<Especie> {
             return false; // Error al guardar la entidad
         }
     }
-
+    public Especie buscarPorNombre(String nombre) {
+        Especie es = obtenerColeccion().find(eq("nombre", nombre)).first();
+        return es;
+    }
     @Override
     public Especie buscarPorID(ObjectId id) {
         Especie especie = obtenerColeccion().find(eq("_id", id)).first();

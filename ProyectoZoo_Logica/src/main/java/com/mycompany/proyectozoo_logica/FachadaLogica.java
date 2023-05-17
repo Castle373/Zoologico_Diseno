@@ -135,4 +135,9 @@ public class FachadaLogica implements ILogica {
       return controlCuidadores.agregarCuidadorEspecieACuidador(id, cuidadorEspecie);
     }
 
+    @Override
+    public Especie verificaNombreEspecie(String nombre) {
+        return controlEspecie.verificaEspecie(nombre);
+    }
+
 }

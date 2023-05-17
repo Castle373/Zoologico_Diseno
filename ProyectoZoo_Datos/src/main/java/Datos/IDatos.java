@@ -24,7 +24,7 @@ public interface IDatos
     public List<Vegetacion> recuperarVegetacion();
     
     public Habitat verificarHabitat(String nombre);
-    
+    public Especie verificarEspecie(String nombre);
     public boolean guardaHabitat(Habitat habitat);
     public boolean guardaEspecie(Especie especie);
     public boolean guardarGuia(Guia guia);
@@ -32,6 +32,7 @@ public interface IDatos
     public boolean agregarCuidadorEspecieACuidador(ObjectId id, CuidadorEspecie cuidadorEspecie);
     public boolean guardarHabitats(List<HabitatOcupada> habitatOcupada);
     public boolean guardarCuidadoresEspecie(List<CuidadorEspecie> cuidadoresEspecie);
+    
     public List<Zona> recuperarZonas();
     public List<Cuidador> recuperarCuidadores();
     public List<Habitat> recuperarHabitats();

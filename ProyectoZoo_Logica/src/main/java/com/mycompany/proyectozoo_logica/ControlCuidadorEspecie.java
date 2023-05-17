@@ -7,6 +7,8 @@ package com.mycompany.proyectozoo_logica;
 import Datos.FabricaDatos;
 import Datos.IDatos;
 import Dominio.CuidadorEspecie;
+import Dominio.Especie;
+
 import java.util.List;
 
 /**
@@ -19,4 +21,9 @@ public class ControlCuidadorEspecie {
         datos=FabricaDatos.dameInstancia();
          return  datos.guardarCuidadoresEspecie(cuidadores);
     }  
+  public Especie verificaHabitat(String nombre){
+        datos=FabricaDatos.dameInstancia();
+        return datos.verificarEspecie(nombre);
+       
+    }
 }

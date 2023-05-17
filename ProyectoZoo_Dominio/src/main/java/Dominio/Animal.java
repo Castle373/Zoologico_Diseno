@@ -15,40 +15,16 @@ public class Animal{
     }
     private ObjectId id;
     private String nombre;
-    private boolean sexo;
+    private String sexo;
     private int edad;
-    private Especie especie;
 
-    public Animal(ObjectId id, String nombre, boolean sexo, int edad, Especie especieId) {
-        this.id = id;
-        this.nombre = nombre;
-        this.sexo = sexo;
-        this.edad = edad;
-        this.especie = especieId;
-    }
-
-    public Animal(String nombre, boolean sexo, int edad, Especie especieId) {
-        this.nombre = nombre;
-        this.sexo = sexo;
-        this.edad = edad;
-        this.especie = especieId;
-    }
-
-    public Animal(String nombre, boolean sexo, int edad) {
+    public Animal(String nombre, String sexo, int edad) {
         this.nombre = nombre;
         this.sexo = sexo;
         this.edad = edad;
     }
-   
 
-    public Especie getEspecie() {
-        return especie;
-    }
-
-    public void setEspecie(Especie especie) {
-        this.especie = especie;
-    }
-
+  
 
     public ObjectId getId() {
         return id;
@@ -66,11 +42,11 @@ public class Animal{
         this.nombre = nombre;
     }
 
-    public boolean getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

@@ -27,7 +27,8 @@ import org.bson.types.ObjectId;
  * @author diego
  */
 public class frmRegistrarEspecie extends javax.swing.JFrame {
- ILogica logica;
+    ILogica logica;
+    boolean actualizar;
     DefaultListModel<Cuidador> modeloListaCuidadorDisponibles = new DefaultListModel<>();
     DefaultListModel<Cuidador> modeloListaCuidadorSeleccionados = new DefaultListModel<>();
     DefaultListModel<Habitat> modeloListaHabitatDisponibles = new DefaultListModel<>();
@@ -68,7 +69,30 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
             cmbZona.addItem(zona);
         }
     }
-
+    public void reiniciarContinentes(){
+        while(!modeloListaCuidadorSeleccionados.isEmpty()){
+            modeloListaCuidadorDisponibles.addElement(modeloListaCuidadorSeleccionados.get(0));
+            modeloListaCuidadorSeleccionados.remove(0);
+        }
+        while(!modeloListaHabitatSeleccionados.isEmpty()){
+            modeloListaHabitatDisponibles.addElement(modeloListaHabitatSeleccionados.get(0));
+            modeloListaHabitatSeleccionados.remove(0);
+        }    
+    }
+    public void mostrarHabitat(Especie especie){
+        JOptionPane.showMessageDialog(this, "Nombre de Habitat , No disponible");
+//         for (Continente c :especie.getCuidadorEspecie()) {
+//             for (int i = 0; i < modeloListaContinentesDisponibles.size(); i++) {
+//                 if (modeloListaContinentesDisponibles.get(i).equals(c)) {
+//                     modeloListaContinentesSeleccionados.addElement(c);
+//                     modeloListaContinentesDisponibles.remove(i);
+//                 }
+//             }
+// 
+//         }
+            
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -328,6 +352,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreCientificoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCientificoActionPerformed
@@ -335,7 +360,11 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreCientificoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        if (!txtNombre.getText().isEmpty()) {
+            Especie espe= logica.verificaNombreEspecie(txtNombre.getText());
+            
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -412,7 +441,7 @@ if (evt.getClickCount() == 2) {
         List<HabitatOcupada> habitats = new ArrayList<>();
         List<CuidadorEspecie> cuidadorEspecie = new ArrayList<>();
         especie.setId(new ObjectId());
-        
+        especie.setAnimales(animalesAcutales);
         for (int i = 0; i < modeloListaHabitatSeleccionados.size(); i++) {
             HabitatOcupada h = new HabitatOcupada(modeloListaHabitatSeleccionados.get(i).getId(), especie.getId());
             habitats.add(h);       
