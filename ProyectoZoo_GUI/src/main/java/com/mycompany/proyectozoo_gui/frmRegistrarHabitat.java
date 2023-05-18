@@ -82,7 +82,7 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
         
     }
     public void mostrarHabitat(Habitat habitat){
-        JOptionPane.showMessageDialog(this, "Nombre de Habitat , No disponible");
+        JOptionPane.showMessageDialog(this, "Habitat Encontrada!");
          for (Continente c :habitat.getContinentes()) {
              for (int i = 0; i < modeloListaContinentesDisponibles.size(); i++) {
                  if (modeloListaContinentesDisponibles.get(i).equals(c)) {
@@ -92,6 +92,9 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
              }
  
          }
+         cmbClimas.setSelectedItem(habitat.getClima());
+         cmbVegetacion.setSelectedItem(habitat.getVegetacion());
+         desactivarCampos();
             
         
     }
@@ -320,6 +323,7 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
                 mostrarHabitat(habitat);
             }else{
               activarCampos();
+              txtNombreHabitat.setEnabled(false);
             }
         }
 
@@ -365,6 +369,7 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     txtNombreHabitat.setText("");
     desactivarCampos();
+    txtNombreHabitat.setEnabled(true);
     reiniciarContinentes();
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -386,8 +391,10 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
         
         if (logica.guardarHabitat(h)) {
             JOptionPane.showMessageDialog(this, "Registro Exitoso");
-            this.dispose();
-            logica.abrirMenu();
+           frmPrincipalP f = new frmPrincipalP();
+        f.setVisible(true);
+        this.dispose();
+            
         }else{
             JOptionPane.showMessageDialog(this, "Error al Registrar");
         }
@@ -398,6 +405,8 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
             modeloListaContinentesDisponibles.addElement(modeloListaContinentesSeleccionados.get(0));
             modeloListaContinentesSeleccionados.remove(0);
         }
+        cmbClimas.setSelectedIndex(0);
+        cmbVegetacion.setSelectedIndex(0);
         
     }
    

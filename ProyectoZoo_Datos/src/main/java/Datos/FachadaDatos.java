@@ -168,30 +168,34 @@ public class FachadaDatos implements IDatos
         con.guardar(conaO);
 
         VegetacionDAO vege = new VegetacionDAO();
-        Vegetacion ve = new Vegetacion("Taiga");
-        Vegetacion veB = new Vegetacion("Boscosa");
+        Vegetacion ve = new Vegetacion("Forestado");
         Vegetacion veD = new Vegetacion("Desertica");
-        Vegetacion veP = new Vegetacion("Praderas");
+        Vegetacion veP = new Vegetacion("Jungla");
         vege.guardar(ve);
-        vege.guardar(veB);
         vege.guardar(veD);
         vege.guardar(veP);
 
         ClimaDAO clima = new ClimaDAO();
-        Clima cl = new Clima("Tropical");
-        Clima clS = new Clima("Soleado");
-        Clima clN = new Clima("Nublado");
+
+        Clima clS = new Clima("Seco");
+        Clima clN = new Clima("Humedo");
         Clima clT = new Clima("Templado");
-        Clima clP = new Clima("Polar");
-        clima.guardar(cl);
+
+ 
         clima.guardar(clS);
         clima.guardar(clN);
         clima.guardar(clT);
-        clima.guardar(clP);
-        Zona zona= new Zona("diegoaño", 0);
-        Cuidador cui = new Cuidador("Diego", "direccion", "6441271967", new Date());
+        
+        Zona zona= new Zona("Zona Reptiles", 10000);
+         Zona zona1= new Zona("Zona Felinos", 10000);
+          Zona zona2= new Zona("Zona Aves", 10000);
+           Zona zona3= new Zona("Zona Acuatica", 10000);
+        Cuidador cui = new Cuidador("Diego Robles Rojas", "direccion", "6441271967", new Date());
         ZonaDAO z = new ZonaDAO();
         z.guardar(zona);
+        z.guardar(zona1);
+        z.guardar(zona2);
+        z.guardar(zona3);
         CuidadorDAO C = new CuidadorDAO();
         C.guardar(cui);
            Guia g = new Guia("Gibran Duran Solano", "direccion", "6441271967", new Date());

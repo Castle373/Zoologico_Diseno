@@ -25,10 +25,6 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="btnGuarfarItinerario" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                       <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
@@ -54,100 +50,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="tfLunes" max="32767" attributes="0"/>
-                                          <Component id="cbLunes" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="cbMartes" max="32767" attributes="0"/>
-                                          <Component id="tfMartes" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="cbMiercoles" pref="74" max="32767" attributes="0"/>
-                                          <Component id="tfMiercoles" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="chJueves" max="32767" attributes="0"/>
-                                          <Component id="tfJueves" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="chViernes" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="chSabado" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="tfViernes" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfSabado" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tfItinerarioBuscar" min="-2" pref="163" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel4" max="32767" attributes="0"/>
-                                          <Component id="tfDuracion" min="-2" pref="79" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnVerificar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="tfLongitud" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel6" max="32767" attributes="0"/>
-                                          <Component id="tfVisitantes" min="-2" pref="84" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-=======
                           <Component id="tfLunes" min="-2" pref="80" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cbLunes" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
->>>>>>> 0da583e8d1f11199a6414a6edac635e7f7923f53
                               </Group>
                           </Group>
                       </Group>
@@ -168,8 +76,6 @@
                           <Component id="jScrollPane8" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-<<<<<<< HEAD
-=======
                   <Group type="102" attributes="0">
                       <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
@@ -271,7 +177,6 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="180" max="-2" attributes="0"/>
                   </Group>
->>>>>>> 0da583e8d1f11199a6414a6edac635e7f7923f53
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -336,42 +241,6 @@
                   </Group>
                   <Component id="jScrollPane8" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
-<<<<<<< HEAD
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfItinerarioBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnVerificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="tfDuracion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfLongitud" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfVisitantes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cbLunes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbMartes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbMiercoles" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chJueves" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chViernes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chSabado" alignment="3" min="-2" max="-2" attributes="0"/>
-=======
               <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
@@ -409,7 +278,6 @@
                       <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                       <Component id="tfVisitantes" min="-2" max="-2" attributes="0"/>
                   </Group>
->>>>>>> 0da583e8d1f11199a6414a6edac635e7f7923f53
               </Group>
               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -457,12 +325,6 @@
                   <Component id="jScrollPane7" min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
-<<<<<<< HEAD
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnGuarfarItinerario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
-=======
->>>>>>> 0da583e8d1f11199a6414a6edac635e7f7923f53
           </Group>
       </Group>
     </DimensionLayout>
@@ -478,9 +340,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Registrar Itinerario"/>
       </Properties>
     </Component>

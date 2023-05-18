@@ -235,6 +235,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
 
         jLabel10.setText("Habitats");
 
+        txtNombreCientifico.setEnabled(false);
         txtNombreCientifico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreCientificoActionPerformed(evt);
@@ -540,7 +541,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       frmPrincipalP f = new frmPrincipalP();
+        frmPrincipalP f = new frmPrincipalP();
         f.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -567,8 +568,9 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         especie.setCuidadorEspecie(cuidadorEspecie);
         if (this.logica.guardarEspecie(especie)) {
             JOptionPane.showMessageDialog(this, "Registro Exitoso");
+            frmPrincipalP f = new frmPrincipalP();
+            f.setVisible(true);
             this.dispose();
-            logica.abrirMenu();
         } else {
             JOptionPane.showMessageDialog(this, "Error al Registrar");
         }

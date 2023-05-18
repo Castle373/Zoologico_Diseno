@@ -3,7 +3,7 @@ package Datos;
 
 /**
  *
- * @author IVAN
+ * @author Diego
  */
 public class FabricaDatos {
      public static IDatos dameInstancia(){
