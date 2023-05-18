@@ -356,8 +356,9 @@ public class frmRegistrarHabitat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          this.dispose();
-        logica.abrirMenu();
+         frmPrincipalP f = new frmPrincipalP();
+        f.setVisible(true);
+        this.dispose();
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -12,6 +12,7 @@ import Dominio.HabitatOcupada;
 import Dominio.Itinerario;
 import Dominio.Vegetacion;
 import Dominio.Zona;
+import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -119,12 +120,84 @@ public class FachadaDatos implements IDatos
     }
 
     @Override
+    public Cuidador buscarCuidador(ObjectId id) {
+        return cuidador.buscarPorID(id);
+    }
+
+    @Override
+    public Habitat buscarHabitat(ObjectId id) {
+       return habitat.buscarPorID(id);
+    }
+    @Override
     public List<Itinerario> recuperaItinerarios() {
         return itinerario.buscarTodos();
     }
 
-    
-    
+    @Override
+    public List<Guia> recuperarGuias() {
+      return guia.buscarTodos();
+    }
+
+    @Override
+    public Itinerario verificarItinerario(String nombre) {
+       return this.itinerario.buscarPorNombre(nombre);
+    }
+
+    @Override
+    public boolean guardarItinerario(Itinerario iti) {
+        return this.itinerario.guardar(iti);
+    }
+
+    @Override
+    public boolean actualizarItinerario(Itinerario itinerario) {
+        return this.itinerario.actualizarItinerario(itinerario);
+    }
+
+    @Override
+    public void RegistrarDatos() {
+        ContinenteDAO con = new ContinenteDAO();
+        Continente cona = new Continente("America");
+        Continente conaf = new Continente("Africa");
+        Continente conaA = new Continente("Asia");
+        Continente conaE = new Continente("Europa");
+        Continente conaO = new Continente("Oceania");
+        con.guardar(cona);
+        con.guardar(conaf);
+        con.guardar(conaA);
+        con.guardar(conaE);
+        con.guardar(conaO);
+
+        VegetacionDAO vege = new VegetacionDAO();
+        Vegetacion ve = new Vegetacion("Taiga");
+        Vegetacion veB = new Vegetacion("Boscosa");
+        Vegetacion veD = new Vegetacion("Desertica");
+        Vegetacion veP = new Vegetacion("Praderas");
+        vege.guardar(ve);
+        vege.guardar(veB);
+        vege.guardar(veD);
+        vege.guardar(veP);
+
+        ClimaDAO clima = new ClimaDAO();
+        Clima cl = new Clima("Tropical");
+        Clima clS = new Clima("Soleado");
+        Clima clN = new Clima("Nublado");
+        Clima clT = new Clima("Templado");
+        Clima clP = new Clima("Polar");
+        clima.guardar(cl);
+        clima.guardar(clS);
+        clima.guardar(clN);
+        clima.guardar(clT);
+        clima.guardar(clP);
+        Zona zona= new Zona("diegoaño", 0);
+        Cuidador cui = new Cuidador("Diego", "direccion", "6441271967", new Date());
+        ZonaDAO z = new ZonaDAO();
+        z.guardar(zona);
+        CuidadorDAO C = new CuidadorDAO();
+        C.guardar(cui);
+           Guia g = new Guia("Gibran Duran Solano", "direccion", "6441271967", new Date());
+           GuiaDAO gs = new GuiaDAO();
+           gs.guardar(g);
+    }
     
 
 }

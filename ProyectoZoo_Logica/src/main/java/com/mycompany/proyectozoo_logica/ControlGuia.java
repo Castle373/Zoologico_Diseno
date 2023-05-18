@@ -20,4 +20,8 @@ public class ControlGuia {
          datos=FabricaDatos.dameInstancia();
         return datos.guardarGuia(guia);
     }
+    public List<Guia> recuperarGuias(){
+         datos=FabricaDatos.dameInstancia();
+        return datos.recuperarGuias();
+    }
 }

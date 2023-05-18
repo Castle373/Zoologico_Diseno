@@ -12,28 +12,41 @@ public class Itinerario {
     /**
      * Default constructor
      */
-    public Itinerario() {
-    }
+    
 
     private ObjectId id;
+    private String nombre;
     private int totalEspecies;
     private int maxVisitantes;
-    private float Longitud;
-    private int numeroEspecies;
+    private int longitud;
+    private int duracion;
     private List<Zona> zonasParques;
     private List<Recorrido> recorridos;
-    private List<Queja> quejas;
+    
 
-    public Itinerario(int totalEspecies, int maxVisitantes, float Longitud, int numeroEspecies) {
+    public Itinerario(String Itinerario, int totalEspecies, int maxVisitantes, int Longitud, int duracion) {
+        this.nombre = Itinerario;
         this.totalEspecies = totalEspecies;
         this.maxVisitantes = maxVisitantes;
-        this.Longitud = Longitud;
-        this.numeroEspecies = numeroEspecies;
-        this.zonasParques=new ArrayList<>();
-        this.recorridos=new ArrayList<>();
-        this.quejas=new ArrayList<>();
+        this.longitud = Longitud;
+        this.duracion = duracion;
+        zonasParques= new ArrayList<>();
+        recorridos = new ArrayList<>();
+
+    }
+    public Itinerario() {
+        zonasParques= new ArrayList<>();
+        recorridos = new ArrayList<>();
+
+    }
+    
+    public String getNombre() {
+        return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     public List<Recorrido> getRecorridos() {
         return recorridos;
     }
@@ -42,30 +55,23 @@ public class Itinerario {
         this.recorridos = recorridos;
     }
 
-    public List<Queja> getQuejas() {
-        return quejas;
-    }
-
-    public void setQuejas(List<Queja> quejas) {
-        this.quejas = quejas;
-    }
 
     
     
-    public float getLongitud() {
-        return Longitud;
+    public int getLongitud() {
+        return longitud;
     }
 
-    public void setLongitud(float Longitud) {
-        this.Longitud = Longitud;
+    public void setLongitud(int longitud) {
+        this.longitud = longitud;
     }
 
-    public int getNumeroEspecies() {
-        return numeroEspecies;
+    public int getDuracion() {
+        return duracion;
     }
 
-    public void setNumeroEspecies(int numeroEspecies) {
-        this.numeroEspecies = numeroEspecies;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
     public List<Zona> getZonasParques() {
@@ -108,6 +114,11 @@ public class Itinerario {
 
     public void setMaxVisitantes(int maxVisitantes) {
         this.maxVisitantes = maxVisitantes;
+    }
+
+    @Override
+    public String toString() {
+        return nombre ;
     }
 
     

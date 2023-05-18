@@ -27,8 +27,9 @@ import org.bson.types.ObjectId;
  * @author diego
  */
 public class frmRegistrarEspecie extends javax.swing.JFrame {
+
+    boolean mostrar;
     ILogica logica;
-    boolean actualizar;
     DefaultListModel<Cuidador> modeloListaCuidadorDisponibles = new DefaultListModel<>();
     DefaultListModel<Cuidador> modeloListaCuidadorSeleccionados = new DefaultListModel<>();
     DefaultListModel<Habitat> modeloListaHabitatDisponibles = new DefaultListModel<>();
@@ -40,7 +41,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
      */
     public frmRegistrarEspecie() {
         initComponents();
-        
+
         listaDisponiblesCuidadores.setModel(modeloListaCuidadorDisponibles);
         listaSeleccionadosHabitats.setModel(modeloListaHabitatSeleccionados);
         listaDisponiblesHabitats.setModel(modeloListaHabitatDisponibles);
@@ -49,8 +50,8 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
 
     public frmRegistrarEspecie(List<Cuidador> listcui, List<Habitat> listhabi, List<Zona> listz) {
         initComponents();
-        logica =FabricaLogica.crearInstancia();
-        animalesAcutales= new ArrayList();
+        logica = FabricaLogica.crearInstancia();
+        animalesAcutales = new ArrayList();
         listaDisponiblesCuidadores.setModel(modeloListaCuidadorDisponibles);
         listaSeleccionadosHabitats.setModel(modeloListaHabitatSeleccionados);
         listaDisponiblesHabitats.setModel(modeloListaHabitatDisponibles);
@@ -69,30 +70,78 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
             cmbZona.addItem(zona);
         }
     }
-    public void reiniciarContinentes(){
-        while(!modeloListaCuidadorSeleccionados.isEmpty()){
+
+    public void reiniciarListas() {
+        while (!modeloListaCuidadorSeleccionados.isEmpty()) {
             modeloListaCuidadorDisponibles.addElement(modeloListaCuidadorSeleccionados.get(0));
             modeloListaCuidadorSeleccionados.remove(0);
         }
-        while(!modeloListaHabitatSeleccionados.isEmpty()){
+        while (!modeloListaHabitatSeleccionados.isEmpty()) {
             modeloListaHabitatDisponibles.addElement(modeloListaHabitatSeleccionados.get(0));
             modeloListaHabitatSeleccionados.remove(0);
-        }    
+        }
     }
-    public void mostrarHabitat(Especie especie){
-        JOptionPane.showMessageDialog(this, "Nombre de Habitat , No disponible");
-//         for (Continente c :especie.getCuidadorEspecie()) {
-//             for (int i = 0; i < modeloListaContinentesDisponibles.size(); i++) {
-//                 if (modeloListaContinentesDisponibles.get(i).equals(c)) {
-//                     modeloListaContinentesSeleccionados.addElement(c);
-//                     modeloListaContinentesDisponibles.remove(i);
-//                 }
-//             }
-// 
-//         }
-            
-        
+
+    public void mostrarHabitat(Especie especie) {
+        mostrar = true;
+        JOptionPane.showMessageDialog(this, "Especie Encontrada");
+        if (especie.getCuidadorEspecie() != null) {
+            for (CuidadorEspecie c : especie.getCuidadorEspecie()) {
+                for (int i = 0; i < modeloListaCuidadorDisponibles.size(); i++) {
+                    Cuidador cuidador = logica.buscarCuidador(c.getCuidador());
+                    if (modeloListaCuidadorDisponibles.get(i).equals(cuidador)) {
+                        modeloListaCuidadorSeleccionados.addElement(cuidador);
+                        modeloListaCuidadorDisponibles.remove(i);
+                    }
+                }
+
+            }
+        }
+        if (especie.getHabitatsOcupadas() != null) {
+            for (HabitatOcupada h : especie.getHabitatsOcupadas()) {
+                for (int i = 0; i < modeloListaHabitatDisponibles.size(); i++) {
+                    Habitat habitat = logica.buscarHabitat(h.getHabitat());
+                    if (modeloListaHabitatDisponibles.get(i).equals(habitat)) {
+                        modeloListaHabitatSeleccionados.addElement(habitat);
+                        modeloListaHabitatDisponibles.remove(i);
+                    }
+                }
+            }
+        }
+        txtNombre.setText(especie.getNombre());
+        txtNombreCientifico.setText(especie.getNombreCientifico());
+        txtDescripcion.setText(especie.getDescripcion());
+        animalesAcutales = especie.getAnimales();
+        descactivarCampos();
+        btnRegistrarAnimal.setEnabled(true);
     }
+
+    public void activarCampos() {
+        txtNombre.setEnabled(true);
+        txtNombreCientifico.setEnabled(true);
+        txtDescripcion.setEnabled(true);
+        cmbZona.setEnabled(true);
+        listaDisponiblesCuidadores.setEnabled(true);
+        listaSeleccionadosCuidadores.setEnabled(true);
+        listaSeleccionadosHabitats.setEnabled(true);
+        listaDisponiblesHabitats.setEnabled(true);
+        btnGuardar.setEnabled(true);
+        btnRegistrarAnimal.setEnabled(true);
+    }
+
+    public void descactivarCampos() {
+        txtNombre.setEnabled(false);
+        txtNombreCientifico.setEnabled(false);
+        txtDescripcion.setEnabled(false);
+        cmbZona.setEnabled(false);
+        listaDisponiblesCuidadores.setEnabled(false);
+        listaSeleccionadosCuidadores.setEnabled(false);
+        listaSeleccionadosHabitats.setEnabled(false);
+        listaDisponiblesHabitats.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnRegistrarAnimal.setEnabled(false);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,13 +178,16 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         cmbZona = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        btnRegistrarAnimal = new javax.swing.JButton();
         txtAnimales = new javax.swing.JTextField();
+        btnReiniciar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Registrar Especie");
 
+        listaDisponiblesCuidadores.setEnabled(false);
         listaDisponiblesCuidadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaDisponiblesCuidadoresMouseClicked(evt);
@@ -143,6 +195,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listaDisponiblesCuidadores);
 
+        listaSeleccionadosHabitats.setEnabled(false);
         listaSeleccionadosHabitats.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaSeleccionadosHabitatsMouseClicked(evt);
@@ -150,6 +203,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listaSeleccionadosHabitats);
 
+        listaDisponiblesHabitats.setEnabled(false);
         listaDisponiblesHabitats.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaDisponiblesHabitatsMouseClicked(evt);
@@ -157,6 +211,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(listaDisponiblesHabitats);
 
+        listaSeleccionadosCuidadores.setEnabled(false);
         listaSeleccionadosCuidadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaSeleccionadosCuidadoresMouseClicked(evt);
@@ -205,27 +260,31 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
+        txtDescripcion.setEnabled(false);
         jScrollPane5.setViewportView(txtDescripcion);
 
         jLabel12.setText("Nombre Cientifico:");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.setEnabled(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
 
+        cmbZona.setEnabled(false);
         cmbZona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbZonaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Registrar Animales");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarAnimal.setText("Registrar Animales");
+        btnRegistrarAnimal.setEnabled(false);
+        btnRegistrarAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegistrarAnimalActionPerformed(evt);
             }
         });
 
@@ -234,6 +293,21 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         txtAnimales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAnimalesActionPerformed(evt);
+            }
+        });
+
+        btnReiniciar.setBackground(new java.awt.Color(153, 0, 0));
+        btnReiniciar.setText("X");
+        btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -252,16 +326,6 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
                         .addComponent(cmbZona, 0, 141, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(190, 190, 190)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel11)
-                                .addGap(63, 63, 63)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel12)
@@ -293,14 +357,30 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
                                 .addGap(20, 20, 20)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(76, 76, 76))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jButton1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnReiniciar)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(btnGuardar)
                 .addGap(112, 112, 112)
-                .addComponent(jButton2)
+                .addComponent(btnRegistrarAnimal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -308,13 +388,17 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btnReiniciar)))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,7 +430,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
+                        .addComponent(btnRegistrarAnimal)
                         .addComponent(txtAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
@@ -361,10 +445,18 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!txtNombre.getText().isEmpty()) {
-            Especie espe= logica.verificaNombreEspecie(txtNombre.getText());
-            
+            Especie espe = logica.verificaNombreEspecie(txtNombre.getText());
+            if (espe != null) {
+                mostrarHabitat(espe);
+
+            } else {
+                activarCampos();
+                btnGuardar.setText("Guardar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre para verificar");
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -402,7 +494,7 @@ public class frmRegistrarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_listaDisponiblesHabitatsMouseClicked
 
     private void listaSeleccionadosHabitatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSeleccionadosHabitatsMouseClicked
-if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             Habitat selectedValue = listaSeleccionadosHabitats.getSelectedValue();
             if (selectedValue != null) {
                 modeloListaHabitatDisponibles.addElement(selectedValue);
@@ -417,23 +509,43 @@ if (evt.getClickCount() == 2) {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (validadCampos()) {
+
             guardarEspecie();
-        }   
+
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnimalesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAnimalesActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
-        fmRegistroAnimales f = new fmRegistroAnimales(this, true, animalesAcutales);
+    private void btnRegistrarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAnimalActionPerformed
+
+        fmRegistroAnimales f = new fmRegistroAnimales(this, true, animalesAcutales, mostrar);
         f.setVisible(true);
         txtAnimales.setText(String.valueOf(animalesAcutales.size()));
-        
+
+    }//GEN-LAST:event_btnRegistrarAnimalActionPerformed
+
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+        txtNombre.setText("");
+        txtNombreCientifico.setText("");
+        txtDescripcion.setText("");
+        reiniciarListas();
+        mostrar = false;
+        descactivarCampos();
+        txtNombre.setEnabled(true);
+        animalesAcutales = new ArrayList<>();
+        txtAnimales.setText(String.valueOf(animalesAcutales.size()));
+    }//GEN-LAST:event_btnReiniciarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       frmPrincipalP f = new frmPrincipalP();
+        f.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void guardarEspecie(){
+    public void guardarEspecie() {
         Especie especie = new Especie();
         especie.setDescripcion(txtDescripcion.getText());
         especie.setNombre(txtNombre.getText());
@@ -444,24 +556,25 @@ if (evt.getClickCount() == 2) {
         especie.setAnimales(animalesAcutales);
         for (int i = 0; i < modeloListaHabitatSeleccionados.size(); i++) {
             HabitatOcupada h = new HabitatOcupada(modeloListaHabitatSeleccionados.get(i).getId(), especie.getId());
-            habitats.add(h);       
+            habitats.add(h);
         }
         for (int i = 0; i < modeloListaCuidadorSeleccionados.size(); i++) {
             CuidadorEspecie c = new CuidadorEspecie(new Date(), modeloListaCuidadorSeleccionados.get(i).getId(), especie.getId());
-            cuidadorEspecie.add(c);       
+            cuidadorEspecie.add(c);
         }
-        
+
         especie.setHabitatsOcupadas(habitats);
         especie.setCuidadorEspecie(cuidadorEspecie);
         if (this.logica.guardarEspecie(especie)) {
             JOptionPane.showMessageDialog(this, "Registro Exitoso");
             this.dispose();
             logica.abrirMenu();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Error al Registrar");
         }
     }
-    public boolean validadCampos(){
+
+    public boolean validadCampos() {
         if (txtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Indique un Nombre de Especie,Porfavor");
             return false;
@@ -476,14 +589,15 @@ if (evt.getClickCount() == 2) {
         }
         if (modeloListaHabitatSeleccionados.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Selecione minimo 1 habitat");
-            return false; 
-        }   
+            return false;
+        }
         if (modeloListaCuidadorSeleccionados.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Selecione minimo 1 Cuidador");
-            return false; 
-        }  
+            return false;
+        }
         return true;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -521,6 +635,8 @@ if (evt.getClickCount() == 2) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnRegistrarAnimal;
+    private javax.swing.JButton btnReiniciar;
     private javax.swing.JComboBox<Zona> cmbZona;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -23,7 +23,7 @@ public class Queja {
     private String correoElectronico;
     private String telefonoVisitante;
     private String nombreCompletoVisitante;
-    private Recorrido recorrido;
+    
 
     public Queja(String descripcion, Date fecha, String correoElectronico, String telefonoVisitante, String nombreCompletoVisitante, Recorrido recorrido) {
         this.descripcion = descripcion;
@@ -31,20 +31,8 @@ public class Queja {
         this.correoElectronico = correoElectronico;
         this.telefonoVisitante = telefonoVisitante;
         this.nombreCompletoVisitante = nombreCompletoVisitante;
-        this.recorrido = recorrido;
+        
     }
-    
-    
-    
-    public Recorrido getRecorrido() {
-        return recorrido;
-    }
-
-    public void setRecorrido(Recorrido recorrido) {
-        this.recorrido = recorrido;
-    }
-
-   
 
     public ObjectId getId() {
         return id;
