@@ -1,6 +1,7 @@
 
 package Datos;
 
+import DAO.*;
 import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Cuidador;
